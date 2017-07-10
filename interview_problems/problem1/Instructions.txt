@@ -1,0 +1,288 @@
+Hierarchy Service
+
+In our application we organize data in a hierarchy and we have a
+service that we use to manage it. In this exercise you'll write a
+simplified version of that service. It uses a similar API, but in
+the interest of time, avoids tricky problems around availability,
+scalability, concurrency, and persistance.
+
+
+Problem description
+
+Your service will maintain a hierarchy of nodes in memory. The API
+supports adding and deleting nodes, moving them to a new position in
+the tree, and searching. Each node is identified by a name and an
+ID (both strings). The name of a node must be unique among its
+siblings (i.e., the children of the node's parent); the ID must be
+unique among all nodes in the tree.
+
+The interface uses JSON-encoded messages. Your program will receive
+requests on standard input and write responses to standard output.
+To simplify parsing, each request will be contained on a single
+line. Your responses don't have to be on a single line. Your program
+will not receive a new request until the response has been received
+from the previous request. Your program will never receive invalid
+JSON as a test case. Your program should exit gracefully when it
+detects end of file on standard input.
+
+Note: If you want to do printf-style debugging, make sure to write
+to standard error instead of standard output.
+
+We've given example input and output for each request (see below).
+Your responses don't have to look exactly like the example
+responses, but they have to be equivalent JSON objects.
+
+We've also provided a test client to help validate your implementation.
+Please test your implementation with the test client. Your
+implementation will be expected to pass all of the tests provided
+by the test client, along with some additional tests. See below for
+information on running the test client.
+
+We don't expect you to write your own test suite unless you feel
+it helps you work.
+
+Beyond the API, we leave all implementation details to you. Use the
+language of your choice and architect the service however you see fit.
+You can use whatever references you want, but please restrict yourself
+to your language's core libraries (unless you need to use an external
+library to support JSON encoding/decoding).
+
+When you submit your service, please include source code, a Makefile or
+other build script, and instructions for how to run it.
+
+While this isn't a timed exercise, we don't expect it to take more then
+two hours. Do not hesitate to ask if you need clarification on the
+API or these instructions.
+
+
+API Methods
+
+For all methods except Query, the response is a simple JSON object
+indicating success or failure:
+
+Success response: {"ok":true}
+Failure response: {"ok":false}
+
+
+Add Node
+
+Description: Add a new node to the tree.
+
+Params:
+   - name      {string}: Node name
+   - id        {string}: Node ID
+   - parent_id {string}: ID of the parent node; if ommitted or empty string,
+                         add the root node
+
+Validation:
+   - Two sibling nodes cannot have the same name.
+   - No two nodes in the tree can have the same ID.
+   - There can only be one root node (i.e., a node without a parent).
+   - Name and ID must be specified and not empty strings.
+   - If specified, parent node must exist.
+
+Example:  Add the root node
+
+Request:  {"add_node":{"id":"1","name":"Root"}}
+Response: {"ok":true}
+
+Example:  Add a child node
+
+Request:  {"add_node":{"id":"4","name":"Child42","parent_id":"1"}}
+Response: {"ok":true}
+
+Example:  Add a child node to nonexistent parent.
+
+Request:  {"add_node":{"id":"4","name":"Child78","parent_id":"200"}}
+Response: {"ok":false}
+
+
+Delete Node
+
+Description: Delete a node from the tree.
+
+Params:
+   - id {string}: ID of node to delete
+
+Validation:
+   - ID must be specified and not an empty string.
+   - Node must exist.
+   - Node must not have children.
+
+Example:  Add root node and then delete it.
+
+Request:  {"add_node":{"id":"1","name":"Root"}}
+Response: {"ok":true}
+Request:  {"delete_node":{"id":"1"}}
+Response: {"ok":true}
+
+Example:  Delete nonexistent node
+
+Request:  {"delete_node":{"id":"1"}}
+Response: {"ok":false}
+
+
+Move Node
+
+Description: Move a node to a new parent in the tree
+
+Params:
+   - id {string}:            ID of node to move
+   - new_parent_id {string}: ID of the new parent node
+
+Validation:
+   - ID and new parent ID must be specified and not empty strings.
+   - Both nodes must exist.
+   - The name of the node to be moved must not be the same as those of any of
+     the new parent's other children.
+   - Move must not create a cycle in the tree.
+
+Example:  Add root and two children, then move one child under the other one.
+
+Request:  {"add_node":{"id":"1","name":"Root"}}
+Response: {"ok":true}
+Request:  {"add_node":{"parent_id":"1","id":"2","name":"A"}}
+Response: {"ok":true}
+Request:  {"add_node":{"parent_id":"1","id":"3","name":"B"}}
+Response: {"ok":true}
+Request:  {"move_node":{"id":"2","new_parent_id":"3"}}
+Response: {"ok":true}
+
+Example:  Add root, child, child of child, then try to move first child under
+          second (which would create a cycle).
+
+Request:  {"add_node":{"id":"1","name":"Root"}}
+Response: {"ok":true}
+Request:  {"add_node":{"parent_id":"1","id":"2","name":"A"}}
+Response: {"ok":true}
+Request:  {"add_node":{"parent_id":"2","id":"3","name":"B"}}
+Response: {"ok":true}
+Request:  {"move_node":{"id":"2","new_parent_id":"3"}}
+Response: {"ok":false}
+
+
+Query
+
+Description: Return a list of nodes matching certain criteria.
+
+Params:
+  - min_depth {integer}:     Minimum distance from root of query. Default: none.
+  - max_depth {integer}:     Maximum distance from root of query. Default: none.
+  - names {list of strings}: If specified, only return nodes whose names are in
+                             the list.
+  - ids {list of ids}:       If specified, only return nodes whose IDs are in
+                             the list.
+  - root_ids {list of ids}:  Search subtrees rooted at specified nodes.
+                             If not specified, search from the root. If any ID
+                             in the list doesn't exist in the tree, ignore it.
+
+All parameterss are optional. If no parameters are specified, return all
+nodes. If no nodes match, return an empty list of nodes. There are
+no failure cases.
+
+Nodes must be returned in the order in which they would be found
+in a pre-order depth first traversal with sibling nodes being
+processed in order by name. Your query function should consider all
+nodes in that order and include any nodes in the response that match
+the specified parameters. Each node returned must match all specified
+query parameters, as described above.
+
+If a list of root IDs is specified, perform separate queries as
+described above for the subtrees rooted at each specified root node.
+The returned list of nodes should be the concatenation of the results
+of each individual subtree query in the order given by the list
+of root IDs. Ignore any specified root IDs that don't exist in the
+tree.
+
+For minimum and maximum depth, depth refers to the number of levels
+a given node is below the root of the query (i.e., the number of
+edges that must be traversed to get from the root of the query to
+the given node). For example, the root of a query is at depth 0,
+its children are at depth 1, their children are at depth 2, etc.
+If minimum depth is specified, only nodes whose depths are greater
+than or equal to the minimum depth should be considered. Similarly,
+if maximum depth is specified, only nodes whose depths are less
+than or equal to the maximum depth should be considered. If both
+minimum and maximum depths are specified, only nodes whose depths
+fall within that range should be considered.
+
+Example:  Add nodes and query with max_depth 1.
+
+Request:  {"add_node":{"id":"1","name":"Root"}}
+Response: {"ok":true}
+Request:  {"add_node":{"parent_id":"1","id":"2","name":"A"}}
+Response: {"ok":true}
+Request:  {"add_node":{"parent_id":"2","id":"3","name":"B"}}
+Response: {"ok":true}
+Request:  {"query":{"max_depth":1}}
+Response (pretty-printed for ease of reading):
+    {
+       "nodes": [
+          {
+             "id": "1",
+             "name": "Root",
+             "parent_id": ""
+          },
+          {
+             "name": "A",
+             "id": "2",
+             "parent_id": "1"
+          }
+       ]
+    }
+
+
+Example:  Add nodes and query for nodes named "B".
+
+Request:  {"add_node":{"id":"1","name":"Root"}}
+Response: {"ok":true}
+Request:  {"add_node":{"parent_id":"1","id":"2","name":"A"}}
+Response: {"ok":true}
+Request:  {"add_node":{"parent_id":"2","id":"3","name":"B"}}
+Response: {"ok":true}
+Request:  {"query":{"names":["B"]}}
+Response (pretty-printed for ease of reading):
+    {
+       "nodes": [
+          {
+             "id": "3",
+             "parent_id": "2",
+             "name": "B"
+          }
+       ]
+    }
+
+
+Test Client
+
+The test client program can be used to test your implementation.
+The test client sends a series of requests to your implementation
+and validates the responses. The test client reports whether each
+test passes or fails. The test client continues testing even if a
+test fails, so make sure to check the output for "failed" to see
+if any tests failed. (You can also check the exit status of the
+test client, which will be 1 if any tests failed, and 0 otherwise.)
+
+This package contains test_client binaries for Linux (test_client_linux),
+Mac OS (test_client_darwin), and Windows (test_client_win.exe). To
+test your implementation, run the appropriate version of test_client,
+passing the command and arguments required to run your implementation.
+
+The following examples assume a Linux system. If you're using a
+different system, use the appropriate test_client version.
+
+If your implementation uses a compiled language (C, C++, Go, etc.),
+run
+
+    test_client_linux hierarchy
+
+If you are using a scripting language (Ruby, Python, etc.), you
+need to provide the interpreter name followed by the name
+of the script. For example, for a Python implementation, run
+
+    test_client_linux python hierarchy.py
+
+For Java, assuming the class name is "Hierarchy", since
+the command to run your implementation is "java Hierarchy", run
+
+    test_client_linux java Hierarchy

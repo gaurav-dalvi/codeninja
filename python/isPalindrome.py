@@ -36,8 +36,6 @@ def isPalindrome(string):
     length = len(tempString)
     end = length / 2
     tempString = tempString.lower()
-    print tempString
-    print length, end
 
     for i in xrange(end):
         if tempString[i] != tempString[(length-1) - i]:
@@ -48,3 +46,4 @@ def isPalindrome(string):
 
 if __name__ == '__main__':
     print isPalindrome('ever a foot t fareve')
+    print isPalindrome('GAURAVVARAG')

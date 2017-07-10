@@ -1,0 +1,236 @@
+def say_hello():
+    print 'Hello, World'
+
+for i in xrange(5):
+    say_hello()
+
+
+# 
+# Your previous Plain Text content is preserved below:
+# 
+# ===== Preface =====
+# 
+# This question is very difficult in C and C++, where there is
+# insufficient library support to answer it in an hour. If you
+# prefer to program in one of those languages, please ask us to
+# provide you with a question designed for those languages instead!
+# 
+# 
+# ===== Intro =====
+# 
+# Here at Delphix, we admire NASA’s engineering mission. But beyond
+# that, we can use data from NASA to make predictions about the
+# future. Solving global warming is unfortunately outside the scope
+# of an interview question, so your goal is somewhat simpler: use
+# NASA’s public HTTP APIs to create a function which predicts the
+# next time a satellite image will be taken of a certain location.
+# This can be handy if you're trying to get your picture onto online
+# mapping applications like Google Maps. :-)
+# 
+# You should implement this in whatever language you're most
+# comfortable with -- just make sure your code is production quality,
+# well designed, and easy to read.
+# 
+# Finally, please help us by keeping this question and your
+# answer secret so that every candidate has a fair chance in
+# future Delphix interviews. Thank you!
+# 
+# 
+# ===== Steps =====
+# 
+# 1.  Choose the language you want to code in from the menu
+#     labeled "Plain Text" in the top right corner of the
+#     screen. You will see a "Run" button appear on the top
+#     left -- clicking this will send your code to a Linux
+#     server and compile / run it. Output will appear on the
+#     right side of the screen.
+#     
+#     For information about what libraries are available for
+#     your chosen language, see:
+# 
+#       https://coderpad.io/languages
+# 
+# 2.  Pull up the documentation for the API you'll be using:
+# 
+#       https://api.nasa.gov/api.html
+# 
+# 3.  You'll need an API key in order to query the data from
+#     NASA. You can use the one that we created:
+# 
+#       9Jz6tLIeJ0yY9vjbEUWaH9fsXA930J9hspPchute
+# 
+# 4.  Implement a function flyby() whose method signature
+#     looks like this (can differ slightly depending on the
+#     language you chose):
+# 
+#       void flyby(double latitude, double longitude)
+# 
+#     When there is enough data to do so, the function should
+#     print a prediction for when the next picture will be taken. 
+#     The prediction should have a date and time based on the
+#     average time between successive pictures. In pseudocode, the
+#     prediction method might look like:
+# 
+#       print "Next time: " + (last_date + avg_time_delta)
+# 
+#     You can use the https://api.nasa.gov/api.html#assets API
+#     to get the information you will need to compute this.
+#     Note that the NASA documentation mentions that
+#     avg_time_delta is usually close to 16 days, but we'd
+#     like you to calculate it since it's not always the same.
+# 
+#     If you want to change the function signature to deal
+#     with error conditions or some other complexity not
+#     captured by the one above, go for it! Just add a comment
+#     telling us what you changed and why.
+# 
+# 5.  Add any tests for your code to the main() method of
+#     your program so that we can easily run them.
+# 
+# 
+# ====== FAQs =====
+# 
+# Q:  How do I know if my solution is correct?
+# A:  Make sure you've read the prompt carefully and you're
+#     convinced your program does what you think it should
+#     in the common case. If your program does what the prompt 
+#     dictates, you will get full credit. We do not use an
+#     auto-grader, so we do not have any values for you to
+#     check correctness against.
+#     
+# Q:  What is Delphix looking for in a solution?
+# A:  After submitting your code, we'll have a pair of engineers
+#     evaluate it and determine next steps in the interview process.
+#     We are looking for correct, easy-to-read, robust code.
+#     Specifically, ensure your code is idiomatic and laid out
+#     logically. Ensure it is correct. Ensure it handles all edge
+#     cases and error cases elegantly.
+#     
+# Q:  How should my output be formatted?
+# A:  Your output should include a date and time in whatever
+#     format you find easiest. There are no other strict formatting
+#     constraints (we just inspect the output for correctness).
+# 
+# Q:  Any suggestions of fun locations I can test with?
+# A:  Sure! Here are a few:
+# 
+#     Fun location           Latitude    Longitude
+#     ---------------------  ----------  ------------
+#     Grand Canyon           36.098592   -112.097796
+#     Niagra Falls           43.078154   -79.075891
+#     Four Corners Monument  36.998979   -109.045183
+#     Delphix San Francisco  37.7937007  -122.4039064
+# 
+# Q:  If I need a clarification, who should I ask?
+# A:  Send all questions to the email address that sent you
+#     this document, and an engineer at Delphix will get
+#     back to you ASAP (we're pretty quick during normal
+#     business hours).
+# 
+# Q:  How long should this question take me?
+# A:  Approximately 1 hour, but it could take more or less
+#     depending on your experience with web APIs and the
+#     language you choose.
+# 
+# Q:  When is this due?
+# A:  We will begin grading your answer 24 hours after it is
+#     sent to you, so that is the deadline.
+# 
+# Q:  How do I turn in my solution?
+# A:  Anything you've typed into this document will be saved.
+#     Email us when you are done with your solution. We will
+#     respond confirming we've received the solution within
+#     24 hours.
+# 
+# Q:  Can I use any external resources to help me?
+# A:  Absolutely! Feel free to use any online resources you
+#     like, but please don't collaborate with anyone else.
+# 
+# Q:  Can I use my favorite library in my program?
+# A:  Unfortunately, there is no way to load external
+#     libraries into CoderPad, so you must stick to what
+#     they provide out of the box for your language (although
+#     they do support for many popular general-use libraries):
+# 
+#       https://coderpad.io/languages
+# 
+#     If you really want to use something that's not
+#     available, email the person who sent you this link
+#     and we will work with you to find a solution.
+# 
+# Q:  Why does my program terminate unexpectedly in
+#     CoderPad, and why can't I read from stdin or pass
+#     arguments on the command line?
+# A:  CoderPad places a limit on the runtime and amount of
+#     output your code can use, but you should be able to
+#     make your code fit within those limits. You can hard
+#     code any arguments or inputs to the program in your
+#     main() method or in your tests.
+# 
+# Q:  I'm a Vim/Emacs fan -- is there any way to use those
+#     keybindings? What about changing the tab width? Font
+#     size?
+# A:  Yes! Hit the button at the bottom of the screen that
+#     looks like a keyboard.
+
+
+
+36.098592 -112.097796
+
+https://api.nasa.gov/planetary/earth/assets?lon=-112.097796&lat=36.098592&begin=2015-04-19&api_key=9Jz6tLIeJ0yY9vjbEUWaH9fsXA930J9hspPchute
+
+
+https://api.nasa.gov/planetary/earth/assets?lon=-112.097796&lat=36.098592&begin=2015-04-19&api_key=9Jz6tLIeJ0yY9vjbEUWaH9fsXA930J9hspPchute
+https://api.nasa.gov/planetary/earth/assets?lon=-112.097796&lat=36.098592&begin=2015-04-19&api_key=9Jz6tLIeJ0yY9vjbEUWaH9fsXA930J9hspPchute
+
+
+{"count": 48, "results": [{"date": "2015-04-21T18:02:34", "id": "LC8_L1T_TOA/LC80370352015111LGN00"}, {"date": "2015-05-07T18:02:18", "id": "LC8_L1T_TOA/LC80370352015127LGN00"}, {"date": "2015-05-23T18:02:16", "id": "LC8_L1T_TOA/LC80370352015143LGN00"}, {"date": "2015-06-08T18:02:26", "id": "LC8_L1T_TOA/LC80370352015159LGN00"}, {"date": "2015-06-24T18:02:32", "id": "LC8_L1T_TOA/LC80370352015175LGN00"}, {"date": "2015-07-10T18:02:43", "id": "LC8_L1T_TOA/LC80370352015191LGN00"}, {"date": "2015-07-26T18:02:49", "id": "LC8_L1T_TOA/LC80370352015207LGN00"}, {"date": "2015-08-11T18:02:53", "id": "LC8_L1T_TOA/LC80370352015223LGN00"}, {"date": "2015-08-27T18:03:00", "id": "LC8_L1T_TOA/LC80370352015239LGN00"}, {"date": "2015-09-12T18:03:07", "id": "LC8_L1T_TOA/LC80370352015255LGN00"}, {"date": "2015-09-28T18:03:13", "id": "LC8_L1T_TOA/LC80370352015271LGN00"}, {"date": "2015-10-14T18:03:13", "id": "LC8_L1T_TOA/LC80370352015287LGN00"}, {"date": "2015-10-30T18:03:19", "id": "LC8_L1T_TOA/LC80370352015303LGN00"}, {"date": "2015-11-15T18:03:19", "id": "LC8_L1T_TOA/LC80370352015319LGN00"}, {"date": "2015-12-01T18:03:21", "id": "LC8_L1T_TOA/LC80370352015335LGN00"}, {"date": "2015-12-17T18:03:21", "id": "LC8_L1T_TOA/LC80370352015351LGN00"}, {"date": "2016-01-02T18:03:18", "id": "LC8_L1T_TOA/LC80370352016002LGN00"}, {"date": "2016-01-18T18:03:18", "id": "LC8_L1T_TOA/LC80370352016018LGN00"}, {"date": "2016-02-03T18:03:15", "id": "LC8_L1T_TOA/LC80370352016034LGN00"}, {"date": "2016-02-19T18:03:06", "id": "LC8_L1T_TOA/LC80370352016050LGN00"}, {"date": "2016-03-06T18:03:05", "id": "LC8_L1T_TOA/LC80370352016066LGN00"}, {"date": "2016-03-22T18:02:58", "id": "LC8_L1T_TOA/LC80370352016082LGN00"}, {"date": "2016-04-07T18:02:50", "id": "LC8_L1T_TOA/LC80370352016098LGN00"}, {"date": "2016-04-23T18:02:43", "id": "LC8_L1T_TOA/LC80370352016114LGN00"}, {"date": "2016-05-09T18:02:46", "id": "LC8_L1T_TOA/LC80370352016130LGN00"}, {"date": "2016-05-25T18:02:50", "id": "LC8_L1T_TOA/LC80370352016146LGN00"}, {"date": "2016-06-10T18:02:54", "id": "LC8_L1T_TOA/LC80370352016162LGN00"}, {"date": "2016-06-26T18:03:01", "id": "LC8_L1T_TOA/LC80370352016178LGN00"}, {"date": "2016-07-12T18:03:09", "id": "LC8_L1T_TOA/LC80370352016194LGN00"}, {"date": "2016-07-28T18:03:13", "id": "LC8_L1T_TOA/LC80370352016210LGN00"}, {"date": "2016-08-13T18:03:15", "id": "LC8_L1T_TOA/LC80370352016226LGN00"}, {"date": "2016-08-29T18:03:23", "id": "LC8_L1T_TOA/LC80370352016242LGN00"}, {"date": "2016-09-14T18:03:26", "id": "LC8_L1T_TOA/LC80370352016258LGN00"}, {"date": "2016-09-30T18:03:27", "id": "LC8_L1T_TOA/LC80370352016274LGN00"}, {"date": "2016-10-16T18:03:32", "id": "LC8_L1T_TOA/LC80370352016290LGN00"}, {"date": "2016-11-01T18:03:33", "id": "LC8_L1T_TOA/LC80370352016306LGN00"}, {"date": "2016-11-17T18:03:33", "id": "LC8_L1T_TOA/LC80370352016322LGN00"}, {"date": "2016-12-03T18:03:32", "id": "LC8_L1T_TOA/LC80370352016338LGN00"}, {"date": "2016-12-19T18:03:27", "id": "LC8_L1T_TOA/LC80370352016354LGN00"}, {"date": "2017-01-04T18:03:24", "id": "LC8_L1T_TOA/LC80370352017004LGN00"}, {"date": "2017-02-05T18:03:12", "id": "LC8_L1T_TOA/LC80370352017036LGN00"}, {"date": "2017-02-21T18:03:07", "id": "LC8_L1T_TOA/LC80370352017052LGN00"}, {"date": "2017-03-09T18:02:59", "id": "LC8_L1T_TOA/LC80370352017068LGN00"}, {"date": "2017-03-25T18:02:49", "id": "LC8_L1T_TOA/LC80370352017084LGN00"}, {"date": "2017-04-10T18:02:42", "id": "LC8_L1T_TOA/LC80370352017100LGN00"}, {"date": "2017-04-26T18:02:32", "id": "LC8_L1T_TOA/LC80370352017116LGN00"}, {"date": "2016-04-30T18:08:59", "id": "LC8_L1T_TOA/LC80380352016121LGN00"}, {"date": "2016-05-16T18:08:57", "id": "LC8_L1T_TOA/LC80380352016137LGN00"}]}
+
+
+import requests
+import json
+#require for date manipulation
+from datetime import datetime
+
+# Constants required in this program:
+API_KEY = '9Jz6tLIeJ0yY9vjbEUWaH9fsXA930J9hspPchute'
+BASE_URL = 'https://api.nasa.gov/planetary/earth/assets?'
+TIME_FORMAT= '%Y-%m-%dT%H:%M:%S'
+
+# To check whether we have got 200 OK response or not
+def response_is_ok(inp):
+    if inp.status_code != requests.codes.ok:
+        print "ERROR - Expected HTTP Status 200.  Instead got:"
+        print inp
+        print inp.text
+        return False
+    return True
+
+# Wrapper HTTP_GET function
+def httpGet(url):
+
+    ret = requests.get(url)
+    return ret
+
+# core logic
+def flyby(lattitude, longitude):
+
+    params = 'lon=' + str(longitude) + '&' + 'lat=' + str(lattitude) + '&' + 'begin=' + '2015-04-19' + '&' + 'api_key=' + API_KEY
+    URL = BASE_URL + params
+
+    response = httpGet(URL)
+    if not (response_is_ok(response)):
+        print 'ERROR: Unable to make reuqest'
+    
+    obj = response.json()
+    size =  obj[u'count']
+    print '** Total size is : ', size
+    print '---------------------------'
+    for i in xrange(size):
+        #print obj[u'results'][i][u'date']
+        print datetime.strptime(obj[u'results'][i][u'date'], TIME_FORMAT)
+    print '---------------------------'
+
+flyby(37.7937007, -122.4039064)
+
+2015-06-24T18:02:32
