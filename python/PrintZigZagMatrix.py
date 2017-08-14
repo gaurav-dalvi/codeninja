@@ -1,6 +1,6 @@
 def PrintZigZag(add):
-	cols = len(arr)
-	rows = len(arr[0])
+	rows = len(arr)
+	cols = len(arr[0])
 
 	flag = False
 	for i in xrange(rows):
