@@ -1,3 +1,16 @@
+# Input: AAAAA
+# Output: 5A
+#
+# Input: BAAAB
+# Output: B3AB
+#
+# Input: ABAB
+# Output: ABAB
+#
+# Assume that character will not repeat more than 127 times.
+# Input string can include number as if well:
+# Compressed string must not exceed original length.
+
 def RunLengthEncoding(string):
     size = len(string)
     count = 0
@@ -15,9 +28,15 @@ def RunLengthEncoding(string):
             temp = temp + string[i]
         i += 1
 
-    if len(temp) >= len(string):
-        return string
+        if len(temp) >= len(string):
+            return string
+
     return temp
 
 if __name__ == '__main__':
-    print RunLengthEncoding('AAABB')
+    print 'AAABB' + ': ' + RunLengthEncoding('AAABB')
+    print 'BAAAB' + ': ' + RunLengthEncoding('BAAAB')
+    print 'ABAB' + ': ' + RunLengthEncoding('ABAB')
+    print 'A' + ': ' + RunLengthEncoding('A')
+    print '' + ': ' + RunLengthEncoding('')
+    print 'AABB' + ': ' + RunLengthEncoding('AABB')
