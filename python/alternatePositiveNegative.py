@@ -9,6 +9,9 @@
 # http://www.geeksforgeeks.org/rearrange-array-alternating-positive-negative-items-o1-extra-space/
 # - O(1) space and O(N2) time
 
+# http://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers/
+# http://www.geeksforgeeks.org/rearrange-array-in-alternating-positive-negative-items-with-o1-extra-space-set-2/
+
 def arrange_alternate(numbers):
 
     for i in xrange(len(numbers)): # why do u need this line
