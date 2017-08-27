@@ -35,7 +35,11 @@ def sum_zero_solution(arr):
             map[sum] = [i]
 
     for i in ans:
-        print i
+        start = i[0]
+        while start < i[1]:
+            print str(arr[start]) + ',',
+            start = start + 1
+        print arr[i[1]]
 
 if __name__ == '__main__':
     arr = [6, 3, -1, -3, 4, -2, 2 ,4, 6, -12, -7]
@@ -44,3 +48,24 @@ if __name__ == '__main__':
 
     arr = [3, 4, -7, 3, 1, 3, 1, -4, -2, -2]
     sum_zero_solution(arr)
+    print '###############'
+
+    arr = [6,0,1,2,3,4,-10]
+    sum_zero_solution(arr)
+    print '###############'
+
+    arr = [1,0]
+    sum_zero_solution(arr)
+    print '###############'
+
+    arr = [4,0,1,2,-3]
+    sum_zero_solution(arr)
+    print '###############'
+
+    arr = [3,1,2,3]
+    sum_zero_solution(arr)
+    print '###############'
+
+    arr = [5,1,2,5,-7,10]
+    sum_zero_solution(arr)
+    print '###############'
