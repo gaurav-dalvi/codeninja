@@ -1,4 +1,4 @@
-# give python dictoinary, replace $ from all keys of that dictionary
+# given python dictoinary, replace $ from all keys of that dictionary
 
 def replace_dollar(my_dict):
 
