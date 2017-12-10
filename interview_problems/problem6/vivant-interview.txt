@@ -1,0 +1,88 @@
+# The problem
+
+This homework problem is written to be challenging. There might be terms or
+systems you are unfamiliar with in this problem but that's okay. What
+we're interested in is *how* you tackle and solve problems, especially problems
+you haven't seen before. This problem might require some research and certainly
+some questions and clarification from us. Please don't get stuck! If you get
+stuck, just let me know and I'll be more than happy to provide help of any
+kind. Not everyone we've hired has completely solved this problem!
+
+Problem: write a generic TCP relay.
+
+
+Suppose you have two programs (Echo Server and TCP Client) that can talk to a relay
+server via TCP, but can not reach each other (because of NAT or firewall issues).
+
+You are asked to:
+ 1. Implement a relay server program. We will run this program on the relay
+    computer that the other programs *can* talk to. This program will listen
+    for TCP connections on behalf of other programs. It will forward all
+    incoming/outgoing traffic from the incoming connection to the other program.
+    The forwarding of data is regardless of application protocol (so, this is a level
+    lower than HTTP or SSL or something). The relay server program will be
+    contacted by two types of applications - tcp clients and relay clients.
+    A tcp client requires no knowledge of the relay server. But a relay client will
+    need to know a little bit about the relay.
+ 2. Describe in clear terms to another programmer how they would alter existing
+    programs to be a relay client. Remember that every program in this scenario can
+    contact the relay server. However, the relay server can't *initiate* communication
+    with any other program (due to firewalls, etc).
+ 3. To help yourself debug and for us to evaluate your work, write a small
+    relay client echo server. An echo server will send back a copy of all the data
+    it receives. Once your echo server has established a relayed port, it should
+    print what its new public address is. Remember this address is hosted by the relay
+    server, not the echo server. So, we should be able to contact it through the relay,
+    with existing programs like telnet or netcat.
+ 4. Your relay server should work generally for any application level protocol
+    (not just the echo server), for multiple concurrent clients, where each
+    client may have its own multiple concurrent clients. Imagine multiple echo servers
+    connected with their own set of telnet/netcat clients. Relayed data should be sent
+    to the correct clients and relay clients.
+
+Use whatever language and tools you feel most comfortable with, though we
+ask that you try to limit yourself to standard libraries where possible.
+
+In order to test this, make sure that your relay program can be started on the
+command line:
+
+```
+./relay -port port
+```
+
+where port is the port the relay listens on, and how your echoserver will
+contact the relay. You can (and probably should) accept other arguments, but
+choose reasonable defaults.
+
+Your echo server program should be started on the command line:
+
+```
+./echoserver -relay <host>:<port>
+```
+
+Example workflow:
+
+```
+R=Relay
+ES=Echo Server
+C=Client
+
+ES->R: Hi, I am a service clients want. Relay them to me for me please.
+R-->ES: Sure thing boss. Here is an address that clients can talk to and i'll send them your way.
+ES: prints new relay address
+C-->R: raw network traffic on the new relay address
+R-->ES: Here is some raw data
+ES-->R: Cool thanks, here's some info back. I might send more in a little bit too.
+R-->C: here's some data back for you.
+```
+
+```
+$ ./relay -port 8080 &
+$ ./echoserver -relay localhost:8080 &
+established relay address: localhost:8081
+$ telnet localhost 8081
+Hello, world
+Hello, world
+```
+
+Thanks, and good luck!
