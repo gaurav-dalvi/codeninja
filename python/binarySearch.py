@@ -1,33 +1,53 @@
 # Implement Binary search.
-# Key Learnings : mid -1 and mid+1 in recursive call
+# Key Learnings : 
+# 1: codition is always low <= high and NOT low < high
+# 2: high is always started with len(arr) - 1 , -1 because it directly access array by that index
 
-def binary_search_recursive(nums, low, high, key):
+def bin_search(arr, key):
 
-    mid = (high + low) / 2
-    if nums[mid] == key:
-        return True
-    if low < high:
-        if nums[mid] > key:
-            return binary_search_recursive(nums, low, mid-1, key)
+    high = len(arr)-1
+    low = 0
+    while low <= high:
+        mid = (low+high)/2
+        if arr[mid] == key:
+            return True
+        elif arr[mid] < key:
+            low = mid + 1
         else:
-            return binary_search_recursive(nums, mid+1, high, key)
+            high = mid - 1
     return False
 
-def binary_search_iterative(nums, low, high, key):
+def bin_search_1(arr, key, low,high):
 
-    while low <= high:
-        mid = (low + high) / 2
-        if nums[mid] == key:
+    if low <= high:
+        mid = (high + low) /2
+        if arr[mid] == key:
             return True
+        elif arr[mid] > key:
+            return bin_search_1(arr, key, low, mid - 1)
         else:
-            if nums[mid] > key:
-                high = mid - 1
-            else:
-                low = mid + 1
-
+            return bin_search_1(arr,key, mid +1, high)
     return False
 
 
 if __name__ == '__main__':
-    nums = [1,2,3,4,5,6]
-    print binary_search_iterative(nums, 0, len(nums)-1, 8)
+    arr = [1,2,3,4,5,6]
+
+    print bin_search(arr, -1)
+    print bin_search(arr, 1)
+    print bin_search(arr, 2)
+    print bin_search(arr, 3)
+    print bin_search(arr, 4)
+    print bin_search(arr, 5)
+    print bin_search(arr, 6)
+    print bin_search(arr, 7)
+    print '\n'
+
+    print bin_search_1(arr, -1, 0, len(arr)-1)
+    print bin_search_1(arr, 1, 0, len(arr) - 1)
+    print bin_search_1(arr, 2, 0, len(arr) - 1)
+    print bin_search_1(arr, 3, 0, len(arr) - 1)
+    print bin_search_1(arr, 4, 0, len(arr) - 1)
+    print bin_search_1(arr, 5, 0, len(arr) - 1)
+    print bin_search_1(arr, 6, 0, len(arr) - 1)
+    print bin_search_1(arr, 7, 0, len(arr) - 1)
