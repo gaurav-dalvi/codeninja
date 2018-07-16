@@ -1,0 +1,8 @@
+Recursion Notes:
+1: You can do things while going deep into recursion or while comming back.
+(Write program to print 5,4,3,2,1,2,3,4,5)
+2: If you are collecting results in collection then no need to return 
+if not DO NOT FORGET to return
+3: For loop can be converted into recursion and vice versa.
+4: DO NOT FORGET to return from the program. Always check on that.
+(Do reverse linked list program)
