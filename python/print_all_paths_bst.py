@@ -1,3 +1,5 @@
+# https://www.geeksforgeeks.org/given-a-binary-tree-print-out-all-of-its-root-to-leaf-paths-one-per-line/
+# Focus on why we are popping from the stack at the end
 class Node():
 
     def __init__(self, data):
