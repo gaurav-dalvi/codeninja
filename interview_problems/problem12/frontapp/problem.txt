@@ -1,0 +1,17 @@
+# Front - Take home exercise
+
+In answering the code questions, please submit code as if you intended to ship it to production. The details matter. Tests are expected, as is well written, simple idiomatic code. We'd recommend you use whatever language you feel strongest in. It doesn't have to be one we use -- we believe good engineers can be productive in any language. Other applicants have found gist.github.com useful for sharing solutions.
+We believe this should take less than 3 hours to complete, but understand you may have other commitments and time constraints. Please let us know (roughly) when we should expect your answers (e.g. "over the weekend").
+
+**Note**: please don't publish your code online, as we intend to reuse this test.
+
+Good luck!
+
+## Flatten
+Write some code, that will flatten an array of arbitrarily nested arrays of integers into a flat array of integers. e.g. [[1,2,[3]],4] -> [1,2,3,4]
+
+## TopK
+
+Write a program, topK, that given a number K and an arbitrarily large file containing individual numbers on each line (e.g. 200Gb file), will output the largest K numbers, highest first. Tell me about the run time/space complexity of it, and whether you think there's room for improvement in your approach.
+
+I hope you have fun, let us know if you've any questions.
