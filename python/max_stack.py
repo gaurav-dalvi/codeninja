@@ -5,6 +5,9 @@
 # 2: push -> direct prepend item to stack and then worry about adjusting old_max and max
 # 3: pop -> directly pop, adjust stack and then worry about adjusting old_max and max
 # 4: practice similar for get_min
+# 5: For O(1) time and Constant space solution refer this :
+# https://www.geeksforgeeks.org/design-a-stack-that-supports-getmin-in-o1-time-and-o1-extra-space/
+# https://www.geeksforgeeks.org/find-maximum-in-a-stack-in-o1-time-and-o1-extra-space/
 
 class Node:
 	def __init__(self,data):
