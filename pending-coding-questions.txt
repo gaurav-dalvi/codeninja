@@ -190,6 +190,30 @@ and “pede dolor aenean volutpat” and “pede dolor volutpat”
 would be broad matches. And the best broad match would be  
 “pede dolor volutpat” since that has the least number of non-phrase words.
 
+39: Cohesity
+
+Split string into palidrome fashion
+abbaccd
+a|b|b|a|c|c|d
+a|bb|a|cc|d
+abba|a|cc|d
+
+40: Sort already N sroted arrays Cohesity
+
+41: Shotest substring including all strings from given set. Order does not matter
+MainString: ababdlshfrlsa
+Sample: abd
+Output: 3 (abd) from main string
+
+41: BFS : code quality Cohesity
+
+42: Hash table design Cohesity
+
+43: Given a file and dir path find all the paths file is present - Paypal
+[[/], [/foo/bar],[/foo/bar/baz]]
+
+44: find duplicates in array using binary search kind of approach. total N-1 numbers from 1 to N-1 and array contain N numbers - Paypal
+
 
 -----------------------------------
 Google from Blind
@@ -259,5 +283,31 @@ Interview-level recursion problems: http://codingbat.com/java/Recursion-2
 
 If you are a book-person, then the only book that admits that recursion is hard, and helps you do recursive thinking, is written by Eric Roberts at Stanford. It’s freely available:  https://drive.google.com/folderview?id=0Bx7fd6RqI1ddLWcyVTV0LU04RFU&usp=sharing
 
+---------------------------------------------------
+Quora:
 
+---------------------------------------------------
+
+4 Week Online Bootcamp: InterviewCamp.io
+Coding Interview Questions
+Grokking the System Design Interview
+LeetCode
+Coderust 2.0: Faster Coding Interview Preparation using Interactive Visualizations
+Programming Interview Questions | CareerCup
+GeeksforGeeks | A computer science portal for geeks
+HiredInTech's Training Camp for Coding Interviews
+http://highscalability.com/
+Cracking the Coding Interview: 189 Programming Questions and Solutions: Gayle Laakmann McDowell
+Programming - InterviewBit
+Refdash - when you feel ready, interview with an senior engineer
+Grokking the System Design Interview
+Coderust 2.0: Faster Coding Interview Preparation using Interactive Visualizations
+LeetCode
+Programming Interview Questions | CareerCup
+GeeksforGeeks | A computer science portal for geeks
+http://highscalability.com/
+Interview Kickstart: A structured, multi-month course for DS/Algos and Large Scale Systems Design prep:
+Start reading this book: Data Structure and Algorithm by Narasimha Karumanchi
+GeekyPrep - Hub for Geeks
+4 Week Online Bootcamp - Self-Paced, Mentor Led - InterviewCamp.io
 
