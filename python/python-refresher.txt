@@ -1,0 +1,132 @@
+-----------------------------------------------------------------------------------------------
+Python Class:
+
+bit.ly/python-sj106
+
+bit.ly/py-install
+
+http://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X/ref=sr_1_1?ie=UTF8&qid=1418771734&sr=8-1&keywords=pragmatic+programmer
+
+Name mangling
+
+Git , mercurial : bisect
+
+FizzBuzz test
+Robert sedlewick : princton
+-----------------------------------------------------------------------------------------------
+
+http://www.diveintopython3.net/native-datatypes.html
+
+isinstance()
+i = 1.1
+>>> isinstance(i, int)
+False
+>>> isinstance(i, float)
+True
+
+
+To create 2D array in python:
+array = [[0 for i in xrange(columns)] for j in xrange(rows)]
+
+List:
+
+To add element in the list-
+1: Append adds at the end
+
+2: To extend list by using another list
+a = [1,2,3,4]
+>>> a.extend([5,6,7])
+>>> a
+[1, 2, 3, 4, 5, 6, 7]
+
+3: The above is different than a.append([3,4,5])
+
+4: To remove last element:
+a.pop() or a = a[:-1]
+
+5: To count number of elements in the list
+ a = ['a', 'b', 'new', 'mpilgrim', 'new']
+>>> a.count('new')
+2
+
+6: a.index('item') -> gives index of element in the list
+
+7: Removing element from the list:
+- remove element at index -> a.del(2)
+- remove element -> a.remove('new') - will remove first match only
+-  Stack : a.append() and a.pop()
+-  Queue : a.append() and a.pop(0) or del(a[0])
+
+8: Empty list is False
+
+9: Tuples are immutable lists
+
+10: Tuples are faster than lists. If you’re defining a constant set of values and all you’re ever going to do with it is iterate through it, use a tuple instead of a list.
+It makes your code safer if you “write-protect” data that doesn’t need to be changed. Using a tuple instead of a list is like having an implied assert statement that shows this data is constant, and that special thought (and a specific function) is required to override that.
+Some tuples can be used as dictionary keys (specifically, tuples that contain immutable values like strings, numbers, and other tuples). Lists can never be used as dictionary keys, because lists are not immutable.
+
+11: List to Tuple:
+>>> s = [1,2,3,4,5,6]
+>>> tuple(s)
+(1, 2, 3, 4, 5, 6)
+>>> x = tuple(s)
+>>> type(x)
+<class 'tuple'>
+>>> y = list(x)
+>>> type(y)
+<class 'list'>
+>>> y
+[1, 2, 3, 4, 5, 6]
+
+12: Enums in Python:
+ (MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY) = range(7)
+>>> print(MONDAY)
+0
+>>> type(MONDAY)
+<class 'int'>
+
+13: Set :
+ a = set([1,2,3,4,4,4,4])
+>>> a
+{1, 2, 3, 4}
+a.update({9})
+>>> a
+{1, 2, 3, 4, 5, 9}
+>>> a.update({9,10,11,12})
+>>> a.update([9,10,11,12,13])
+>>> a
+{1, 2, 3, 4, 5, 9, 10, 11, 12, 13}
+>>>a.remove(3)
+>>> a
+{1, 2, 4, 5, 9, 10, 11, 12, 13}
+>>> a.discard(9)
+>>> a
+{1, 2, 4, 5, 10, 11, 12, 13}
+>>>
+--- 	If you call the discard() method with a value that doesn’t exist in the set, it does nothing. No error; it’s just a no-op.
+
+14: a = {1,2,3,4,5}
+>>> b = {4,5,6,7,8}
+>>> a.union(b)
+{1, 2, 3, 4, 5, 6, 7, 8}
+>>> type(a.union(b))
+<class 'set'>
+>>> a.intersection(b)
+{4, 5}
+>>> a.difference(b)
+{1, 2, 3}
+>>> a.symmetric_difference(b)
+{1, 2, 3, 6, 7, 8}
+>>>
+	The symmetric_difference() method returns a new set containing all the elements that are in exactly one of the sets.
+
+15: Python Decorators: https://www.programiz.com/python-programming/decorator
+@make_pretty
+def ordinary():
+    print("I am ordinary")
+
+Which is equivalent to:
+def ordinary():
+    print("I am ordinary")
+ordinary = make_pretty(ordinary)
+	
