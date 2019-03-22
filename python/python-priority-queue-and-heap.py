@@ -1,5 +1,6 @@
 # https://stackoverflow.com/questions/2501457/what-do-i-use-for-a-max-heap-implementation-in-python
 # this can be used to design quick own priority queue. Focus on MaxHeapObject class
+# Python priority queue : https://pymotw.com/2/Queue/#priority-queue
 
 import heapq
 
