@@ -1,4 +1,6 @@
 # https://www.geeksforgeeks.org/disjoint-set-data-structures/
+# https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/
+
 # This data structure keeps a track of set of elements partitioned into 
 # number of disjoint sets (non overlapping)
 # Applications:
