@@ -1,0 +1,21 @@
+# https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
+def three_way_quick_sort(arr):
+	low = 0
+	high = len(arr) - 1
+	curr = 0
+
+	while curr <= high:
+		if arr[curr] == 1:
+			arr[low], arr[curr] = arr[curr], arr[low]
+			low += 1
+			curr += 1
+		if arr[curr] == 4:
+			arr[curr], arr[high] = arr[high] , arr[curr]
+			high -= 1
+		if arr[curr] == 2:
+			curr += 1
+
+
+arr = [2, 4, 2, 4, 1, 2, 4, 1, 2, 2, 2, 2, 4, 1, 4, 4, 4]
+three_way_quick_sort(arr)
+print(arr)
